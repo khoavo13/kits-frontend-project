@@ -6,15 +6,17 @@ import ProductDetail from "./pages/productDetail/ProductDetail";
 import NotFound from "./components/notFound/NotFound";
 import "./style.css";
 import { AppProvider } from "./AppContext";
+import Cart from "./components/cart/Cart";
 
 function App() {
   return (
     <div>
       <AppProvider>
-        <BrowserRouter basename="/kits-frontend-project">
+        <BrowserRouter basename="/kits-frontend-project" >
           <Routes>
             <Route index element={<Home />}></Route>
             <Route path="/product" element={<Product />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
             <Route path="/detail/:id" element={<ProductDetail />}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/*" element={<NotFound />}></Route>

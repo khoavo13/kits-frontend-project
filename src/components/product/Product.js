@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -10,9 +10,14 @@ import {
   Col,
 } from "reactstrap";
 import "./Product.css";
+import { AppContext } from "../../AppContext";
 
 export default function Product(props) {
   const { product } = props;
+  const {addCart} = useContext(AppContext)
+  const handle_add_to_cart = (id) => {
+    addCart(id)
+  }
   return (
     <Col lg={3} md={4} sm={6} xs={6} className="">
       <Card className="mb-4 me-2">
@@ -30,7 +35,7 @@ export default function Product(props) {
             <p>Name: {product.name}</p>
             <Link to={`/detail/${product.id}`}>Chi tiết sản phẩm</Link>
           </CardText>
-          <Button>Button</Button>
+          <Button onClick={()=> handle_add_to_cart(product.id)}>Add to cart</Button>
         </CardBody>
       </Card>
     </Col>
