@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../AppContext";
-import { Table } from "reactstrap";
+import { Button, Table } from "reactstrap";
 
 export default function Cart() {
-  const { cart } = useContext(AppContext);
+  const { cart, deleteCart, updateById } = useContext(AppContext);
   return (
     <div>
       <Table hover>
@@ -11,7 +11,7 @@ export default function Cart() {
           <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Amount</th>
+            <th>Quantity</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -20,8 +20,14 @@ export default function Cart() {
             <tr key={index}>
               <td scope="row">{item.id}</td>
               <td>{item.name}</td>
-              <td>1</td>
-              <td>Action</td>
+              <td>
+                <Button onClick={()=>updateById(item.id, 0)}>-</Button>
+                {item.quantity}
+                <Button onClick={()=>updateById(item.id, 1)}>+</Button>
+              </td>
+              <td>
+                <Button className="btn btn-danger" onClick={()=> deleteCart(item.id)}>Delete</Button>
+              </td>
             </tr>
           ))}
         </tbody>

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../../AppContext'
-import { Button, Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem } from 'reactstrap';
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export default function Header() {

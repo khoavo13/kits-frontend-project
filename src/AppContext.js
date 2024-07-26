@@ -22,13 +22,38 @@ export const AppProvider = ({ children }) => {
   }, []);
 
   const addCart = (id) => {
-    const product_add_cart = products.find(item => item.id === id)
+    const res = products.find(item => item.id === id)
+    const index = cart.findIndex(item => item.id === id)
+    if (index >= 0) {
+      let newCart = cart
+      newCart[index].quantity++;
+      setCart(newCart)
+    }
+    else {
+      setCart([...cart, {...res, quantity: 1}])
+    }
+  }
 
-    setCart([...cart, product_add_cart])
+  const deleteCart = (id) => {
+    setCart(cart.filter(item => item.id !==id))
+  }
+
+  const updateById = (id, flag) => {
+    const index = cart.findIndex(item => item.id === id)
+    let newCart = cart
+    if (flag == 0){
+      if (newCart[index].quantity > 1){
+        newCart[index].quantity--;
+      }
+    }
+    else {
+      newCart[index].quantity++;
+    }
+    setCart([...newCart])
   }
   
   return (
-    <AppContext.Provider value={{ count, setCount, cart, addCart }}>
+    <AppContext.Provider value={{ count, setCount, cart, addCart, deleteCart , updateById}}>
       {children}
     </AppContext.Provider>
   );
