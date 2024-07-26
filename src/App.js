@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <AppProvider>
-        <BrowserRouter>
+        <BrowserRouter basename="/kits-frontend-project">
           <Routes>
             <Route index element={<Home />}></Route>
             <Route path="/product" element={<Product />}></Route>
